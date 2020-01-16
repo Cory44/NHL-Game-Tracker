@@ -12,7 +12,17 @@ class GameList extends React.Component {
 	}
 
 	getData() {
-		fetch('https://statsapi.web.nhl.com/api/v1/schedule?date=2020-01-16')
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+
+        if (month < 10)
+            month = '0' + month;
+
+        let dateFetch = year + "-" + month + "-" + day;
+
+		fetch('https://statsapi.web.nhl.com/api/v1/schedule?date=' + dateFetch)
 		.then(response => {
 			return response.json();
 		})
