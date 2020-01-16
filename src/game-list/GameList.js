@@ -1,4 +1,5 @@
 import React from 'react';
+import GameCard from './GameCard.js';
 
 class GameList extends React.Component {
 	constructor(props) {
@@ -48,8 +49,8 @@ class GameList extends React.Component {
   	const games = [];
 
   	for(let i = 0; i < stateGames.length; i++) {
-  		//games[i] = <Game id={stateGames[i]} />;
-        games[i] = <p>{stateGames[i]}</p>;
+  		games[i] = <GameCard id={stateGames[i]} />;
+        //games[i] = <p>{stateGames[i]}</p>;
   	}
   	return <div className="gameList">{games}</div>;
   }
