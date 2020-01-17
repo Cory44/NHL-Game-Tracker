@@ -52,7 +52,9 @@ class GameList extends React.Component {
   		games[i] = <GameCard id={stateGames[i]} />;
         //games[i] = <p>{stateGames[i]}</p>;
   	}
-  	return <div className="gameList">{games}</div>;
+      return (
+        <div className="row">{games}</div>
+      )
   }
 }
 
