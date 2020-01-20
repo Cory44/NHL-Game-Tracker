@@ -1,6 +1,7 @@
 import React from 'react';
 import Time from './Time.js';
 import './GameCard.css';
+import {Link} from 'react-router-dom';
 
 class GameCard extends React.Component {
 
@@ -57,22 +58,25 @@ class GameCard extends React.Component {
 
 	render() {
 		return (
+
 			<div className="col s12 m4">
-				<div className="card game">
-					<div className="row">
-						<p className="col l10 left-align">{this.state.homeTeam}</p>
-						<p className="col l2 right-align">{this.state.homeScore}</p>
-					</div>
+				<Link to={`/game/${this.props.id}`}>
+					<div className="card game">
+						<div className="row">
+							<p className="col l10 left-align">{this.state.homeTeam}</p>
+							<p className="col l2 right-align">{this.state.homeScore}</p>
+						</div>
 
-					<div className="row">
-						<p className="col s10 left-align">{this.state.awayTeam}</p>
-						<p className="col s2 right-align">{this.state.awayScore}</p>
-					</div>
+						<div className="row">
+							<p className="col s10 left-align">{this.state.awayTeam}</p>
+							<p className="col s2 right-align">{this.state.awayScore}</p>
+						</div>
 
-					<div className="row">
-						<p className="col s12">{this.state.time}</p>
+						<div className="row">
+							<p className="col s12">{this.state.time}</p>
+						</div>
 					</div>
-				</div>
+				</Link>
 			</div>
 		);
 	}

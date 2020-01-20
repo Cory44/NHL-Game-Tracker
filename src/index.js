@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
-import Schedule from './game-list/Schedule';
+import App from './App';
+// import Schedule from './game-list/Schedule';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    //<App />,
-    <Schedule />,
+    <App />,
+    // <Schedule />,
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
