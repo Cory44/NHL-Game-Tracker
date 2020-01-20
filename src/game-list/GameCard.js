@@ -1,5 +1,6 @@
 import React from 'react';
 import Time from './Time.js';
+import './GameCard.css';
 
 class GameCard extends React.Component {
 

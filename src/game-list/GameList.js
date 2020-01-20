@@ -4,7 +4,6 @@ import GameCard from './GameCard.js';
 class GameList extends React.Component {
 	constructor(props) {
 		super(props);
-		this.getData = this.getData.bind(this);
 		this.state = {games: ''};
 	}
 
@@ -13,30 +12,24 @@ class GameList extends React.Component {
 	}
 
 	getData() {
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
 
-        if (month < 10)
-            month = '0' + month;
+    const date = this.props.date;
 
-        let dateFetch = year + "-" + month + "-" + day;
-
-		fetch('https://statsapi.web.nhl.com/api/v1/schedule?date=' + dateFetch)
+		fetch('https://statsapi.web.nhl.com/api/v1/schedule?date=' + date)
 		.then(response => {
 			return response.json();
 		})
 		.then(response => {
-			let games = response['dates'][0]['games'];
-			let gamesPk = []
+			if (response['dates'].length > 0) {
+				let games = response['dates'][0]['games'];
+				let gamesPk = []
 
-			for(let i = 0; i < games.length; i++) {
-				gamesPk[i] = games[i]['gamePk'];
+				for(let i = 0; i < games.length; i++) {
+					gamesPk[i] = games[i]['gamePk'];
+				}
+
+				this.setState({games: gamesPk});
 			}
-
-			this.setState({games: gamesPk});
-			// return gamesPk;
 		});
 	}
 
@@ -49,12 +42,20 @@ class GameList extends React.Component {
   	const games = [];
 
   	for(let i = 0; i < stateGames.length; i++) {
-  		games[i] = <GameCard id={stateGames[i]} />;
+  		games[i] = <GameCard id={stateGames[i]} key={stateGames[i]} />;
         //games[i] = <p>{stateGames[i]}</p>;
   	}
-      return (
-        <div className="row">{games}</div>
-      )
+
+  	if (games.length > 0) {
+  		return (
+    		<div className="row">{games}</div>
+    	);
+    }
+    else {
+    	return (
+    		<div className="row">No Games Scheduled</div>
+    	);
+    }
   }
 }
 

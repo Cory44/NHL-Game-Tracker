@@ -1,0 +1,11 @@
+.game {
+    padding: 0px 15px;
+}
+
+.game .row {
+	margin: 5px;
+}
+
+.game .row .col {
+	margin: 0px !important;
+}
