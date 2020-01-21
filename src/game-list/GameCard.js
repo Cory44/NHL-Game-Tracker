@@ -61,7 +61,7 @@ class GameCard extends React.Component {
 
 			<div className="col s12 m4">
 				<Link to={`/game/${this.props.id}`}>
-					<div className="card game">
+					<div className="card hoverable game">
 						<div className="row">
 							<p className="col l10 left-align">{this.state.homeTeam}</p>
 							<p className="col l2 right-align">{this.state.homeScore}</p>

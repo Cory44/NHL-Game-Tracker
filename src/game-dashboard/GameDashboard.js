@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header/Header.js';
 
 class GameDashboard extends React.Component {
 	constructor(props, match) {
@@ -8,10 +9,7 @@ class GameDashboard extends React.Component {
 	render() {
 
 		return (
-			<div>
-				<h1>Hello</h1>
-				<h3>{this.props.match.params.id}</h3>
-			</div>
+			<Header id={this.props.match.params.id} />
 		);
 	}
 }
