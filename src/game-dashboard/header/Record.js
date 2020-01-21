@@ -20,7 +20,6 @@ class Record extends React.Component {
 			return response.json();
 		})
 		.then(response => {
-			console.log(id);
 			let wins = response['stats'][0]['splits'][0]['stat']['wins'];
 			let losses = response['stats'][0]['splits'][0]['stat']['losses'];
 			let otl = response['stats'][0]['splits'][0]['stat']['ot'];
