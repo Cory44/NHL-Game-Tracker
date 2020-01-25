@@ -1,5 +1,6 @@
 import React from 'react';
 import Player from './Player.js';
+import Goalie from './Goalies.js';
 
 class Roster extends React.Component {
 	constructor(props) {
@@ -23,6 +24,7 @@ class Roster extends React.Component {
 		})
 		.then(response => {
 			let players = [];
+			let team = response['teams'][0]['name'];
 
 			let tempPlayers = response['teams'][0]['roster']['roster']
 
@@ -42,7 +44,10 @@ class Roster extends React.Component {
 				players[i] = player;
 			}
 
-			this.setState({ players: players });
+			this.setState({ 
+				players: players,
+				team: team
+			});
 			
 		});
 	}
@@ -50,6 +55,8 @@ class Roster extends React.Component {
 	render() {
 		const playersState = this.state.players;
 		const players = [];
+		const goalies = [];
+
 
 		for (var i = 0; i < playersState.length; i++) {
 			let id = playersState[i]['id'];
@@ -57,29 +64,56 @@ class Roster extends React.Component {
 			let name = playersState[i]['name'];
 			let position = playersState[i]['position'];
 
-			players[i] = <Player key={id} id={id} number={number} name={name} position={position} />;
+			if (position !== 'G')
+				players[i] = <Player key={id} id={id} number={number} name={name} position={position} />;
+
+			if (position === 'G')
+				goalies[i] = <Goalie key={id} id={id} number={number} name={name} position={position} />;
+
+
 		}
 
 		if (this.state.players === []) {
 			return <p>Loading...</p>;
 		} else {
 			return (
-				<table>
+				<>
+				<h5>{this.state.team}</h5>
+				<h6>Players</h6>
+				<table style={{fontSize: 12}}>
 					<thead>
 						<tr>
-							<th>Number</th>
+							<th className="center-align">Number</th>
 							<th>Name</th>
-							<th>position</th>
-							<th>Games</th>
-							<th>Goals</th>
-							<th>Assists</th>
-							<th>Points</th>
+							<th className="center-align">Position</th>
+							<th className="center-align">Games</th>
+							<th className="center-align">Goals</th>
+							<th className="center-align">Assists</th>
+							<th className="center-align">Points</th>
 						</tr>
 					</thead>
 					<tbody>
 						{players}
 					</tbody>
 				</table>
+
+				<h6><br/>Goalies</h6>
+				<table style={{fontSize: 12}}>
+					<thead>
+						<tr>
+							<th className="center-align">Number</th>
+							<th>Name</th>
+							<th className="center-align">Position</th>
+							<th className="center-align">Games</th>
+							<th className="center-align">Record</th>
+							<th className="center-align">Save %</th>
+							<th className="center-align">GAA</th>
+						</tr>
+					</thead>
+					<tbody>
+						{goalies}
+					</tbody>
+				</table></>
 			);
 		}
 	}

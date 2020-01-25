@@ -14,10 +14,10 @@ class Preview extends React.Component {
 		return (
 			<div className="row">
 				<GameInfo id={this.props.id} />
-				<div className="col s6">
+				<div className="col m12 l6">
 					<Roster id={this.props.homeTeamId} />
 				</div>
-				<div className="col s6">
+				<div className="col m12 l6">
 					<Roster id={this.props.awayTeamId} />
 				</div>
 			</div>

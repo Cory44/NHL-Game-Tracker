@@ -31,7 +31,7 @@ class Record extends React.Component {
 	}
 
 	render() {
-		return (<p className="col s12 center-align">{this.state.record}</p>);
+		return (<p className="col s12 center-align" style={{margin: 0}}>{this.state.record}</p>);
 	}
 }
 

@@ -34,9 +34,9 @@ class GameInfo extends React.Component {
 	render() {
 		return (
 			<div>
-				<h5 className="col s12 center-align">Preview</h5>
-				<p className="col s12 center-align">{this.state.time}</p>
-				<p className="col s12 center-align">{this.state.venue}</p>
+				<h5 className="center-align">Preview</h5>
+				<p className="center-align" style={{margin: 0}}>{this.state.time}</p>
+				<p className="center-align" style={{margin: 0}}>{this.state.venue}</p>
 			</div>
 		);
 	}

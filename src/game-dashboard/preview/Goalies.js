@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Player extends React.Component {
+class Goalie extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
@@ -23,17 +23,21 @@ class Player extends React.Component {
 			return response.json();
 		})
 		.then(response => {
-			if (response['stats'][0]['splits'].length > 0 && this.props.position !== 'G') {
+			if (response['stats'][0]['splits'].length > 0 && this.props.position === 'G') {
 				let games = response['stats'][0]['splits'][0]['stat']['games'];
-				let goals = response['stats'][0]['splits'][0]['stat']['goals'];
-				let assists = response['stats'][0]['splits'][0]['stat']['assists'];
-				let points = goals + assists;
+				let wins = response['stats'][0]['splits'][0]['stat']['wins'];
+				let losses = response['stats'][0]['splits'][0]['stat']['losses'];
+				let ot = response['stats'][0]['splits'][0]['stat']['ot'];
+				let record = wins + "-" + losses + "-" + ot;
+
+				let savePct = response['stats'][0]['splits'][0]['stat']['savePercentage'];
+				let gaa = response['stats'][0]['splits'][0]['stat']['goalAgainstAverage'];
 
 				this.setState({
 					games: games,
-					goals: goals,
-					assists: assists,
-					points: points
+					record: record,
+					savePct: savePct,
+					gaa: gaa
 				});
 			}
 		});	
@@ -47,12 +51,12 @@ class Player extends React.Component {
 				<td>{this.props.name}</td>
 				<td className="center-align">{this.props.position}</td>
 				<td className="center-align">{this.state.games}</td>
-				<td className="center-align">{this.state.goals}</td>
-				<td className="center-align">{this.state.assists}</td>
-				<td className="center-align">{this.state.points}</td>
+				<td className="center-align">{this.state.record}</td>
+				<td className="center-align">{this.state.savePct}</td>
+				<td className="center-align">{this.state.gaa}</td>
 			</tr>
 		);
 	}
 }
 
-export default Player;
+export default Goalie;
