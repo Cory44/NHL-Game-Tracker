@@ -37,23 +37,34 @@ class Day extends React.Component {
 	yesterday(today) {
 		const date = today;
 		let yesterday;
-		let year = date.slice(0, 4);
+		let year = parseInt(date.slice(0, 4), 10);
 		let month = parseInt(date.slice(5, 7), 10);
-		let day = date.slice(8, 10);
+		let day = parseInt(date.slice(8, 10), 10);
 
+		console.log(year + "-" + month + "-" + day);
+		console.log(this.monthDays(month, year));
 
 		if (day !== 1){
 			if (month < 10)
   			month = '0' + month;
-			yesterday = year + "-" + month + "-" + (day - 1);
+
+  		if (day < 10)
+  			day = '0' + (day - 1);
+  		else
+  			day = day - 1;
+
+			yesterday = year + "-" + month + "-" + day;
 		}
 		else if (month !== 1) {
 			if (month < 10)
-  			month = '0' + month;
-			yesterday = year + "-" + (month - 1) + "-" + this.monthDays(month, year);
+  			month = '0' + (month - 1);
+  		else
+  			month = (month - 1);
+
+			yesterday = year + "-" + month + "-" + this.monthDays(month, year);
 		}
 		else {
-			yesterday = (year - 1) + '12-31';
+			yesterday = (year - 1) + "-12-31";
 		}
 
 		return yesterday;
@@ -62,22 +73,33 @@ class Day extends React.Component {
 	tomorrow(today) {
 		const date = today;
 		let tomorrow;
-		let year = date.slice(0, 4);
+		let year = parseInt(date.slice(0, 4), 10);
 		let month = parseInt(date.slice(5, 7), 10);
 		let day = parseInt(date.slice(8, 10), 10);
+
+		// console.log(year + "-" + month + "-" + day);
+		// console.log(this.monthDays(month, year));
 
 		if (day !== this.monthDays(month, year)){
 			if (month < 10)
   			month = '0' + month;
-			tomorrow = year + "-" + month + "-" + (day + 1);
+
+  		if (day + 1 < 10)
+  			day = '0' + (day + 1);
+  		else
+  			day = day + 1;
+
+			tomorrow = year + "-" + month + "-" + day;
 		}
 		else if (month !== 12) {
-			if (month < 10)
-  			month = '0' + month;
-			tomorrow = year + "-" + (month + 1) + "-" + this.monthDays(month + 1, year);
+			if (month + 1 < 10)
+  			month = '0' + (month + 1);
+  		else
+  			month = month + 1;
+			tomorrow = year + "-" + month + "-01";
 		}
 		else {
-			tomorrow = (year + 1) + '01-01';
+			tomorrow = (year + 1) + "-01-01";
 		}
 
 		return tomorrow;
