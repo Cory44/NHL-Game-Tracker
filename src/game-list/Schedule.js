@@ -23,10 +23,13 @@ class Schedule extends React.Component {
 
     const year = dateVar.getFullYear();
     let monthVar = dateVar.getMonth() + 1;
-    const day = dateVar.getDate();	
+    let day = dateVar.getDate();	
 
     if (monthVar < 10)
   		monthVar = '0' + monthVar;
+
+    if (day < 10)
+      day = '0' + day;
 
   	const month = monthVar;
   	const date = year + "-" + month + "-" + day;

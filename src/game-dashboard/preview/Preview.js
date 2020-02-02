@@ -11,6 +11,7 @@ class Preview extends React.Component {
 	}
 
 	render() {
+
 		return (
 			<div className="row">
 				<GameInfo id={this.props.id} />

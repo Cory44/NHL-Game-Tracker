@@ -72,7 +72,9 @@ class GameDashboard extends React.Component {
 			return (
 				<div>
 					{header}
-					<LiveView />
+					<LiveView 
+						id={this.props.match.params.id}
+					/>
 				</div>
 			);
 		} else {

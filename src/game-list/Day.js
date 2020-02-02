@@ -41,9 +41,6 @@ class Day extends React.Component {
 		let month = parseInt(date.slice(5, 7), 10);
 		let day = parseInt(date.slice(8, 10), 10);
 
-		console.log(year + "-" + month + "-" + day);
-		console.log(this.monthDays(month, year));
-
 		if (day !== 1){
 			if (month < 10)
   			month = '0' + month;
