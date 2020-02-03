@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header/Header.js';
 import Preview from './preview/Preview.js';
 import LiveView from './live/Live.js';
+import FinalView from './final/FinalView.js'
 
 class GameDashboard extends React.Component {
 	constructor(props) {
@@ -81,7 +82,7 @@ class GameDashboard extends React.Component {
 			return (
 				<div>
 					{header}
-					<h3>Final</h3>
+					<FinalView id={this.props.match.params.id} />
 				</div>
 			);
 		}
