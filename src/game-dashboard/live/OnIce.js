@@ -5,7 +5,7 @@ class OnIce extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			onIce:[]
+			players: []
 		};
 	}
 
@@ -22,26 +22,68 @@ class OnIce extends React.Component {
 		})
 		.then(response => {
 			let team = this.props.team;
+			let onIce = response['liveData']['boxscore']['teams'][team]['onIce'];
+			const players = []
+			
+			for (let i = 0; i < onIce.length; i++) {
+				let player = "ID" + onIce[i];
+			 	let name = response['liveData']['boxscore']['teams'][team]['players'][player]['person']['fullName'];
+			 	let position = response['liveData']['boxscore']['teams'][team]['players'][player]['position']['abbreviation'];
 
+			 	let goals, assists, stats, shots = 0;
 
-			let onIce = response['liveData']['boxscore']['teams'][team]['onIcePlus'];
+			 	if (position !== 'G') {
+			 		goals = response['liveData']['boxscore']['teams'][team]['players'][player]['stats']['skaterStats']['goals'];
+			 		assists = response['liveData']['boxscore']['teams'][team]['players'][player]['stats']['skaterStats']['assists'];
+			 		stats = goals + "-" + assists + "-" + (goals + assists);
+			 		shots = response['liveData']['boxscore']['teams'][team]['players'][player]['stats']['skaterStats']['shots'];
+			 	}
+
+			 	players[i] = {id: onIce[i], name: name, position: position, stats: stats, shots: shots};
+			}
 
 			this.setState({
-				onIce: onIce
+				players: players,
 			});
 		});
 	}
 
 	render() {
 		const players = [];
-		const onIce = this.state.onIce;
+		const onIcePlayers = this.state.players;
 
-		for (var i = 0; i < onIce.length; i++) {
-			players[i] = <Player id={this.state.onIce[i]['playerId']} shift={this.state.onIce[i]['shiftDuration']} />
+		for (var i = 0; i < onIcePlayers.length; i++) {
+
+			if (onIcePlayers[i]['position'] !== 'G')
+				players[i] = <Player key={onIcePlayers[i]['id']}
+														 name={onIcePlayers[i]['name']}
+														 position={onIcePlayers[i]['position']}
+														 stats={onIcePlayers[i]['stats']}
+														 shots={onIcePlayers[i]['shots']} />;
 		}
-		return (
-			<div>{players}</div>	
-		)
+
+		if (this.state.players === []) {
+			return <p>Loading...</p>;
+		} else {
+			return (
+				<>
+					<h5>Currently on Ice</h5>
+					<table style={{fontSize: 12}}>
+						<thead>
+							<tr>
+								<th>Position</th>
+								<th>Player</th>
+								<th>Stats</th>
+								<th>Shots</th>
+							</tr>
+						</thead>
+						<tbody>
+							{players}
+						</tbody>
+					</table>	
+				</>
+			);
+		}
 	}
 }
 

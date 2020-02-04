@@ -3,10 +3,6 @@ import GameInfo from './GameInfo.js';
 import OnIce from './OnIce.js';
 
 class LiveView extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 
 		return (

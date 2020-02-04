@@ -35,7 +35,7 @@ class GameInfo extends React.Component {
 		return (
 			<div>
 				<h3 className="center-align col m5 s12">{this.state.homeScore}</h3>
-				<h3 className="col m2 s12"></h3>
+				<span className="col m2 s12"></span>
 				<h3 className="center-align col m5 s12">{this.state.awayScore}</h3>
 			</div>
 		);
