@@ -111,11 +111,44 @@ class Day extends React.Component {
 	}
 
 	render() {
+		let dateVar = new Date();
+
+    const year = dateVar.getFullYear();
+    let monthVar = dateVar.getMonth() + 1;
+    let day = dateVar.getDate();	
+
+    if (monthVar < 10)
+  		monthVar = '0' + monthVar;
+
+    if (day < 10)
+      day = '0' + day;
+
+  	const month = monthVar;
+  	const today = year + "-" + month + "-" + day;
+
+  	let date = "Today";
+
+  	if (this.state.today !== today)
+  		date = this.state.today; 
+
+
     return (
     	<div className="row">
-    		<p className="col s4 center-align" onClick={this.handleYesterdayClick}>&lt;--{this.state.yesterday}</p>
-    		<p className="col s4 center-align">{this.state.today}</p>
-    		<p className="col s4 center-align" onClick={this.handleTomorrowClick}>{this.state.tomorrow}--&gt;</p>
+
+
+    		<div className="row col s4 valign-wrapper" onClick={this.handleYesterdayClick}>
+    			<i className="small material-icons right-align col s4">arrow_back</i>
+    			<p className="left-align col s8">{this.state.yesterday}</p>
+    		</div>
+
+    		<div className="row col s4 valign-wrapper">
+    			<p className="col s12 center-align">{date}</p>
+    		</div>
+
+    		<div className="row col s4 valign-wrapper" onClick={this.handleTomorrowClick}>
+    			<p className="right-align col s8">{this.state.tomorrow}</p>
+    			<i className="small material-icons left-align col s4">arrow_forward</i>
+    		</div>
     	</div>
     )
 	}
