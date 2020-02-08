@@ -23,6 +23,7 @@ class OnIce extends React.Component {
 		.then(response => {
 			let team = this.props.team;
 			let onIce = response['liveData']['boxscore']['teams'][team]['onIce'];
+			let triCode = response['gameData']['teams'][team]['triCode']
 			const players = []
 			
 			for (let i = 0; i < onIce.length; i++) {
@@ -44,6 +45,7 @@ class OnIce extends React.Component {
 
 			this.setState({
 				players: players,
+				triCode: triCode,
 			});
 		});
 	}
@@ -67,7 +69,7 @@ class OnIce extends React.Component {
 		} else {
 			return (
 				<>
-					<h5>Currently on Ice</h5>
+					<h5>{this.state.triCode}</h5>
 					<table style={{fontSize: 12}}>
 						<thead>
 							<tr>

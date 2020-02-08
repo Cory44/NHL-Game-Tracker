@@ -8,10 +8,10 @@ export default class Goal extends React.Component {
 	render() {
 		return (
 			<div>
-				<h6 className="col s1">{this.props.team}</h6>
-				<h6 className="col s1">{this.props.period}</h6>
-				<h6 className="col s1">{this.props.time}</h6>
-				<h6 className="col s9">{this.props.desc}</h6>
+				<p className="col m1 s2">{this.props.team}</p>
+				<p className="col m1 s2">{this.props.period}</p>
+				<p className="col m1 s2">{this.props.time}</p>
+				<p className="col m9 s6">{this.props.desc}</p>
 			</div>
 		);
 	}

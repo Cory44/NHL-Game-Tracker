@@ -12,6 +12,7 @@ class LiveView extends React.Component {
 				<hr/>
 				<Scoring id={this.props.id} />
 				<hr/>
+				<h4>Currently on Ice</h4>
 				<div className="col m12 l6">
 					<OnIce id={this.props.id} team={"home"} />
 				</div>

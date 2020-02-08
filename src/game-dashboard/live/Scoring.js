@@ -70,10 +70,10 @@ export default class Scoring extends React.Component {
 			return(
 				<div className="row">
 					<h4>Scoring</h4>
-					<h6 className="col s1"><strong>Team</strong></h6>
-					<h6 className="col s1"><strong>Period</strong></h6>
-					<h6 className="col s1"><strong>Time</strong></h6>
-					<h6 className="col s9"><strong>Scorers</strong></h6>
+					<p className="col m1 s2"><strong>Team</strong></p>
+					<p className="col m1 s2"><strong>Period</strong></p>
+					<p className="col m1 s2"><strong>Time</strong></p>
+					<p className="col m9 s6"><strong>Scorers</strong></p>
 					{goals}
 				</div>
 			);
