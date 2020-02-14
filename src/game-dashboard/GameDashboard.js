@@ -37,7 +37,8 @@ class GameDashboard extends React.Component {
 				homeTeam: homeTeam,
 				awayTeamId: awayTeamId,
 				awayTeam: awayTeam,
-				status: status
+				status: status,
+				response: response
 				// time: time
 			});
 		});
@@ -47,12 +48,7 @@ class GameDashboard extends React.Component {
 		let header = '';
 
 		if (this.state.homeTeamId !== 0){
-			header = <Header 
-					homeTeamId={this.state.homeTeamId}
-					homeTeam={this.state.homeTeam}
-					awayTeamId={this.state.awayTeamId}
-					awayTeam={this.state.awayTeam} 
-				/>;
+			header = <Header response={this.state.response} />;
 		} else {
 			return <p>Loading...</p>;
 		}
