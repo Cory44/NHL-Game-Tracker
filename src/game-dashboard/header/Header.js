@@ -23,7 +23,7 @@ class Header extends React.Component {
 
 				<div className="col m5 s12 center-align">
 					<h3>{awayTeam}</h3>
-					<Record teamId={homeTeamId} />
+					<Record teamId={awayTeamId} />
 				</div>
 			</div>
 		);

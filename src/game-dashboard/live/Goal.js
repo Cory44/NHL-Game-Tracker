@@ -1,9 +1,6 @@
 import React from 'react';
 
 export default class Goal extends React.Component {
-	constructor(props) {
-		super(props)
-	}
 
 	render() {
 		return (

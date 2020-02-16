@@ -22,7 +22,8 @@ export default class Scoring extends React.Component {
 		const scoring = [];
 
 		for (let i = 0; i < goals.length; i++) {
-			scoring[i] = <Goal team={goals[i]['team']}
+			scoring[i] = <Goal key={i}
+												 team={goals[i]['team']}
 												 period={goals[i]['period']}
 												 time={goals[i]['time']}
 												 desc={goals[i]['desc']} />
