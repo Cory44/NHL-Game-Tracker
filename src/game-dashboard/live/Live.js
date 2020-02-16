@@ -4,23 +4,53 @@ import OnIce from './OnIce.js';
 import Scoring from './Scoring.js';
 
 class LiveView extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = { response: "" }
+	}
+
+	componentDidMount() {
+		this.getGameInfo();
+	}
+
+	getGameInfo() {
+		const id = this.props.id;
+
+		fetch('https://statsapi.web.nhl.com/api/v1/game/' + id + '/feed/live')
+		.then(response => {
+			return response.json();
+		})
+		.then(response => {
+
+			this.setState({
+				response: response,
+			});
+		});
+	}
+
 	render() {
 
-		return (
-			<div className="row">
-				<GameInfo id={this.props.id} />
-				<hr/>
-				<Scoring id={this.props.id} />
-				<hr/>
-				<h4>Currently on Ice</h4>
-				<div className="col m12 l6">
-					<OnIce id={this.props.id} team={"home"} />
+		if (this.state.response === "") {
+			return (<p>Loading...</p>);
+		} else {
+
+			return (
+				<div className="row">
+					<GameInfo response={this.state.response} />
+					<hr/>
+					<Scoring response={this.state.response} />
+					<hr/>
+					<h4>Currently on Ice</h4>
+					<div className="col m12 l6">
+						<OnIce response={this.state.response} team={"home"} />
+					</div>
+					<div className="col m12 l6">
+						<OnIce response={this.state.response} team={"away"} />
+					</div>
 				</div>
-				<div className="col m12 l6">
-					<OnIce id={this.props.id} team={"away"} />
-				</div>
-			</div>
-		);
+			);
+		}
 	}
 }
 
