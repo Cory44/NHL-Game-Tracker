@@ -9,7 +9,6 @@ export default class GameInfo extends React.Component {
 
 		return (
 			<>
-				<h4 className="center-align col s12">Final</h4>
 				<h3 className="center-align col m5 s12">{homeScore}</h3>
 				<span className="col m2 s12"></span>
 				<h3 className="center-align col m5 s12">{awayScore}</h3>

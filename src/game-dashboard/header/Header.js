@@ -1,5 +1,7 @@
 import React from 'react';
 import Record from './Record.js';
+import Time from '../../game-list/Time.js';
+import GameInfo from '../preview/GameInfo.js';
 
 class Header extends React.Component {
 
@@ -11,6 +13,16 @@ class Header extends React.Component {
 
 		let awayTeam = response['gameData']['teams']['away']['name'];
 		let awayTeamId = response['gameData']['teams']['away']['id'];
+		const status = response['gameData']['status']['abstractGameState'];
+		let time;
+
+		if (status === 'Preview') {
+  		time = <GameInfo response={response} />
+  	} else if (status === 'Live') {
+  		time = <Time id={this.props.id} />;
+  	} else {
+  		time = 'Final';	
+  	}
 
 		return(
 			<div className="row">
@@ -25,6 +37,7 @@ class Header extends React.Component {
 					<h3>{awayTeam}</h3>
 					<Record teamId={awayTeamId} />
 				</div>
+				<div className="col s12 center-align">{time}</div>
 			</div>
 		);
 	}

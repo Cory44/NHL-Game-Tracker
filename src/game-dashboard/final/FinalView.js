@@ -35,6 +35,7 @@ export default class FinalView extends React.Component {
 			return (
 				<div className="row">
 					<GameInfo response={this.state.response} />
+					<hr />
 				</div>
 			);
 		}

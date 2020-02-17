@@ -30,6 +30,8 @@ class GameDashboard extends React.Component {
 			let awayTeam = response['gameData']['teams']['away']['name'];
 			let awayTeamId = response['gameData']['teams']['away']['id'];
 
+			let venue = response['gameData']['teams']['home']['venue']['name']
+
 			// let time = new Date(response['gameData']['datetime']['dateTime']).toLocaleTimeString([], {hour: 'numeric', minute:'2-digit'});
 
 			this.setState({
@@ -46,9 +48,10 @@ class GameDashboard extends React.Component {
 
 	render() {
 		let header = '';
+		const id = this.props.match.params.id;
 
 		if (this.state.homeTeamId !== 0){
-			header = <Header response={this.state.response} />;
+			header = <Header response={this.state.response} status={this.state.status} id={id}/>;
 		} else {
 			return <p>Loading...</p>;
 		}
@@ -57,12 +60,7 @@ class GameDashboard extends React.Component {
 			return (
 				<div>
 					{header}
-					<hr></hr>
-					<Preview 
-						id={this.props.match.params.id} 
-						homeTeamId={this.state.homeTeamId}
-						awayTeamId={this.state.awayTeamId}
-					/>
+					<Preview response={this.state.response}/>
 				</div>
 			);
 		} else if (this.state.status === 'Live') {

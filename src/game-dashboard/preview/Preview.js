@@ -12,14 +12,18 @@ class Preview extends React.Component {
 
 	render() {
 
+		const response = this.props.response;
+		const homeTeamId = response['gameData']['teams']['home']['id'];
+		const awayTeamId = response['gameData']['teams']['away']['id'];
+
 		return (
 			<div className="row">
-				<GameInfo id={this.props.id} />
+				<hr />
 				<div className="col m12 l6">
-					<Roster id={this.props.homeTeamId} />
+					<Roster id={homeTeamId} />
 				</div>
 				<div className="col m12 l6">
-					<Roster id={this.props.awayTeamId} />
+					<Roster id={awayTeamId} />
 				</div>
 			</div>
 		);
