@@ -3,7 +3,7 @@ import Record from './Record.js';
 import Time from '../../game-list/Time.js';
 import GameInfo from '../preview/GameInfo.js';
 
-class Header extends React.Component {
+export default class Header extends React.Component {
 
 	render() {
 		let response = this.props.response;
@@ -17,12 +17,12 @@ class Header extends React.Component {
 		let time;
 
 		if (status === 'Preview') {
-  		time = <GameInfo response={response} />
+	    time = <GameInfo response={response} />
   	} else if (status === 'Live') {
-  		time = <Time id={this.props.id} />;
-  	} else {
-  		time = 'Final';	
-  	}
+	    time = <Time id={this.props.id} />;
+    } else {
+	    time = 'Final';	
+    }
 
 		return(
 			<div className="row">
@@ -42,5 +42,3 @@ class Header extends React.Component {
 		);
 	}
 }
-
-export default Header;
