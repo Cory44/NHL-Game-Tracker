@@ -1,6 +1,6 @@
 import React from 'react';
 import Record from './Record.js';
-import Time from '../../game-list/Time.js';
+// import Time from '../../game-list/Time.js';
 import GameInfo from '../preview/GameInfo.js';
 
 export default class Header extends React.Component {

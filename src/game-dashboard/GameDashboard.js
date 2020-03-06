@@ -7,8 +7,8 @@ import FinalView from './final/FinalView.js'
 export default class GameDashboard extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { 
-        };
+		this.state = { respons: undefined };
+		this.getGameData = this.getGameData.bind(this);
 	}
 
 	componentDidMount() {
@@ -26,29 +26,21 @@ export default class GameDashboard extends React.Component {
 			let status = response['gameData']['status']['abstractGameState'];
 
 			this.setState({
-				//homeTeamId: homeTeamId,
-				//homeTeam: homeTeam,
-				//awayTeamId: awayTeamId,
-				//awayTeam: awayTeam,
 				status: status,
 				response: response
-				// time: time
 			});
 		});
 	}
 
 	render() {
 		let header = '';
-		let response = '';
-
-		const id = this.props.match.params.id;
+		const response = this.state.response;
 
 		if (this.state.response !== undefined){
-			response = this.state.response
 			header = <Header response={response} />;
 		}
 
-		if (response === '') {
+		if (this.state.status === undefined) {
 			return <p>Loading ...</p>
 		} else {
 			if (this.state.status === 'Preview') {
@@ -59,7 +51,6 @@ export default class GameDashboard extends React.Component {
 					</div>
 				);
 			} else if (this.state.status === 'Live') {
-				console.log(response);
 				return (
 					<div>
 						{header}

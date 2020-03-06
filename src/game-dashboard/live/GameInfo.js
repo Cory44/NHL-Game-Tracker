@@ -4,9 +4,6 @@ export default class GameInfo extends React.Component {
 	render() {
 		const response = this.props.response;
 
-		console.log(response);
-		console.log(response === undefined);
-
 		let awayScore = response['liveData']['linescore']['teams']['away']['goals'];
 		let homeScore = response['liveData']['linescore']['teams']['home']['goals'];
 

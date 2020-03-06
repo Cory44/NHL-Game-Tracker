@@ -4,12 +4,9 @@ import OnIce from './OnIce.js';
 import Scoring from './Scoring.js';
 
 export default class LiveView extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
-		let response = this.props.repsonse;
+		const response = this.props.response;
 
 		if (response === undefined) {
 			return <p>Loading ...</p>;
