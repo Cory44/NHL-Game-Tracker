@@ -8,7 +8,6 @@ export default class GameDashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { 
-            response: 0,
         };
 	}
 
@@ -40,37 +39,41 @@ export default class GameDashboard extends React.Component {
 
 	render() {
 		let header = '';
+		let response = '';
+
 		const id = this.props.match.params.id;
 
-		if (this.state.response !== 0){
-			header = <Header response={this.state.response} />;
-		} else {
-			return <p>Loading...</p>;
+		if (this.state.response !== undefined){
+			response = this.state.response
+			header = <Header response={response} />;
 		}
 
-		if (this.state.status === 'Preview') {
-			return (
-				<div>
-					{header}
-					<Preview response={this.state.response}/>
-				</div>
-			);
-		} else if (this.state.status === 'Live') {
-			return (
-				<div>
-					{header}
-					<LiveView 
-						response={this.state.response}
-					/>
-				</div>
-			);
+		if (response === '') {
+			return <p>Loading ...</p>
 		} else {
-			return (
-				<div>
-					{header}
-					<FinalView response={this.state.response} />
-				</div>
-			);
+			if (this.state.status === 'Preview') {
+				return (
+					<div>
+						{header}
+						<Preview response={response}/>
+					</div>
+				);
+			} else if (this.state.status === 'Live') {
+				console.log(response);
+				return (
+					<div>
+						{header}
+						<LiveView response={response} />
+					</div>
+				);
+			} else {
+				return (
+					<div>
+						{header}
+						<FinalView response={response} />
+					</div>
+				);
+			}
 		}
 	}
 }

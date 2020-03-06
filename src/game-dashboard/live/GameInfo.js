@@ -2,8 +2,13 @@ import React from 'react';
 
 export default class GameInfo extends React.Component {
 	render() {
-		let awayScore = this.props.response['liveData']['linescore']['teams']['away']['goals'];
-		let homeScore = this.props.response['liveData']['linescore']['teams']['home']['goals'];
+		const response = this.props.response;
+
+		console.log(response);
+		console.log(response === undefined);
+
+		let awayScore = response['liveData']['linescore']['teams']['away']['goals'];
+		let homeScore = response['liveData']['linescore']['teams']['home']['goals'];
 
 
 		return (

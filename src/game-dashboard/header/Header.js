@@ -19,7 +19,8 @@ export default class Header extends React.Component {
 		if (status === 'Preview') {
 	    time = <GameInfo response={response} />
   	} else if (status === 'Live') {
-	    time = <Time id={this.props.id} />;
+	    // time = <Time id={this.props.id} />;
+	    time = "Now";
     } else {
 	    time = 'Final';	
     }

@@ -9,22 +9,26 @@ export default class LiveView extends React.Component {
 	}
 
 	render() {
-		const response = this.props.repsonse;
+		let response = this.props.repsonse;
 
-		return (
-			<div className="row">
-				<GameInfo response={response} />
-				<hr/>
-				<Scoring response={response} />
-				<hr/>
-				<h4>Currently on Ice</h4>
-				<div className="col m12 l6">
-					<OnIce response={response} team={"home"} />
+		if (response === undefined) {
+			return <p>Loading ...</p>;
+		} else {
+			return (
+				<div className="row">
+					<GameInfo response={response} />
+					<hr/>
+					<Scoring response={response} />
+					<hr/>
+					<h4>Currently on Ice</h4>
+					<div className="col m12 l6">
+						<OnIce response={response} team={"home"} />
+					</div>
+					<div className="col m12 l6">
+						<OnIce response={response} team={"away"} />
+					</div>
 				</div>
-				<div className="col m12 l6">
-					<OnIce response={response} team={"away"} />
-				</div>
-			</div>
-		);
+			);
+		}
 	}
 }
